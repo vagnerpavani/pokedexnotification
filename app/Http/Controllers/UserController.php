@@ -9,8 +9,5 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function create(){
-
-    	$novoUsuario = new
-    }
+    //
 }
