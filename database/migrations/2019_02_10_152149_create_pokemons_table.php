@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePokemonTable extends Migration
+class CreatePokemonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePokemonTable extends Migration
      */
     public function up()
     {
-        Schema::create('pokemon', function (Blueprint $table) {
+        Schema::create('pokemons', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
             $table->string('tipo_1');
@@ -21,7 +21,7 @@ class CreatePokemonTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
         });
-        Schema::table('pokemon', function (Blueprint $table) {
+        Schema::table('pokemons', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
@@ -33,6 +33,6 @@ class CreatePokemonTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pokemon');
+        Schema::dropIfExists('pokemons');
     }
 }

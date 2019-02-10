@@ -27,4 +27,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    //Relaçao 1 to many 
+    public function pokemons()
+    {
+        return $this->hasMany('App\Pokemon');
+    }
 }
