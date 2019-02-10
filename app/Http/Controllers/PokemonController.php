@@ -37,6 +37,9 @@ class PokemonController extends Controller
 		$novoPokemon->genero = $request->genero;
 		$novoPokemon->user_id = $user_id;
 		$novoPokemon->save();
+		//qtdPokedex recebe +1
+		$user->qtdPokedex = $user->qtdPokedex+1;
+		$user->save();
 
 		//Será necessário notificar o usuário por e-mail sobre seu novo Pokemon
 		//No email devem estar os dados da nova instancia do pokemon
