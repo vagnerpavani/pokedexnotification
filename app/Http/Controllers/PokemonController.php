@@ -27,8 +27,8 @@ class PokemonController extends Controller
 		//Caso a qtdPokedex seja igual a 100...
 		if($user->qtdPokedex == 100){
 			//mensagem de erro, pois não é possível adicionar um novo pokemon
-			$mensagem = 'POKEDEX CHEIA. Retire um pokemon para continuar.'
-			return back()->with('error', $mensagem);
+			$mensagem = 'POKEDEX CHEIA. Retire um pokemon para continuar.';
+			return $mensagem;
 		}
 		//novo Pokemon é atribuído ao Usuario
 		$novoPokemon = new Pokemon;
@@ -48,7 +48,7 @@ class PokemonController extends Controller
 
 
 		//mensagem de sucesso é retornada ao usuario
-		$mensagem = 'Pokemon adicionado.'
-		return back()->with('success', $mensagem);
+		$mensagem = 'Pokemon adicionado.';
+		return $mensagem;
 	}
 }
