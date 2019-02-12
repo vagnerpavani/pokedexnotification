@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
         ]);
         DB::table('users')->insert([
             'nome' => 'Julio',
-            'email' => 'e@gmail.com',
+            'email' => 'emailtestenotification@gmail.com',
             'qtdPokedex' => '75',
             'password' => bcrypt('555'),
         ]);

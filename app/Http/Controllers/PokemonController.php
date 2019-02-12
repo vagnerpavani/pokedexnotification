@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 
 use App\Pokemon;
 use App\User;
+use App\Notifications\PokemonLimit;
 
 class PokemonController extends Controller
 {
+
+	use Notifiable;
     //Controller para resolução do exercicio.
     //Completem as funções com as notificações necessárias.
 	public function pokemonCapturado(Request $request, $user_id){
 		//Pega o usuário com o id passado
+		
 		$user = User::find($user_id);
 
 		//novo Pokemon é atribuído ao Usuario
@@ -27,12 +32,12 @@ class PokemonController extends Controller
 		$user->save();
 
 
-		/*Caso a qtdPokedex seja maior/igual a 70 e menor que 100...
+		//Caso a qtdPokedex seja maior/igual a 70 e menor que 100...
 		if($user->qtdPokedex >= 70 && $user->qtdPokedex <100){
 			//usuário deve ser notificado por e-mail que a pokedex ficará cheia em breve
 			//O email deve mostrar a quantidade de pokemon que estão na pokedex
-			//     [ NECESSARIO COMPLETAR ]
-		}*/
+			$user->notify(new PokemonLimit($user));	
+		}
 
 
 		//Caso a qtdPokedex seja igual a 100...
@@ -42,10 +47,10 @@ class PokemonController extends Controller
 			return $mensagem;
 		}
 
-		//Será necessário notificar o usuário por e-mail sobre seu novo Pokemon
-		//No email devem estar os dados da nova instancia do pokemon
-		//O nome do App deve estar em cor branca
-		//O email deve ter a cor vermelha na barra de cima 
+		
+		
+		
+		
 		//e a cor branca na barra de baixo
 		//Editem o corpo do email e substituam o "Regards" padrão por outras palavras, como "Att", "Abraços", etc.
 		//		   [ NECESSARIO COMPLETAR ]
