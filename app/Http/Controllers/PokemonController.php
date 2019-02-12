@@ -15,6 +15,17 @@ class PokemonController extends Controller
 		//Pega o usuário com o id passado
 		$user = User::find($user_id);
 
+		//novo Pokemon é atribuído ao Usuario
+		$novoPokemon = new Pokemon;
+		$novoPokemon->nome = $request->nome;
+		$novoPokemon->tipo_1 = $request->tipo_1;
+		$novoPokemon->genero = $request->genero;
+		$novoPokemon->user_id = $user_id;
+		$novoPokemon->save();
+		//qtdPokedex recebe +1
+		$user->qtdPokedex = $user->qtdPokedex+1;
+		$user->save();
+
 
 		/*Caso a qtdPokedex seja maior/igual a 70 e menor que 100...
 		if($user->qtdPokedex >= 70 && $user->qtdPokedex <100){
@@ -30,22 +41,13 @@ class PokemonController extends Controller
 			$mensagem = 'POKEDEX CHEIA. Retire um pokemon para continuar.';
 			return $mensagem;
 		}
-		//novo Pokemon é atribuído ao Usuario
-		$novoPokemon = new Pokemon;
-		$novoPokemon->nome = $request->nome;
-		$novoPokemon->tipo_1 = $request->tipo_1;
-		$novoPokemon->genero = $request->genero;
-		$novoPokemon->user_id = $user_id;
-		$novoPokemon->save();
-		//qtdPokedex recebe +1
-		$user->qtdPokedex = $user->qtdPokedex+1;
-		$user->save();
 
 		//Será necessário notificar o usuário por e-mail sobre seu novo Pokemon
 		//No email devem estar os dados da nova instancia do pokemon
+		//O nome do App deve estar em cor branca
 		//O email deve ter a cor vermelha na barra de cima 
 		//e a cor branca na barra de baixo
-		//Editem o corpo do email e substituam o "Regards" padrão
+		//Editem o corpo do email e substituam o "Regards" padrão por outras palavras, como "Att", "Abraços", etc.
 		//		   [ NECESSARIO COMPLETAR ]
 
 
